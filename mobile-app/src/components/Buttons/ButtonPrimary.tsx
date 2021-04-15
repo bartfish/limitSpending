@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Button, Text } from "react-native";
+import { Button, StyleSheet, Text } from "react-native";
 
 interface ButtonProps {
     action(): void,
@@ -13,12 +13,16 @@ export const ButtonPrimary: React.FC<ButtonProps> = ({ action, text }): ReactEle
     return <>
         <Button
             onPress={() => action()}
-            title="Learn More"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button" />
-        {/* <Text>{clicks}</Text> */}
-        <Text>{text}</Text>
+            title={text}
+            style={styles.container}          
+            accessibilityLabel="Learn" />
     </>
 
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+      backgroundColor: "#ddd"
+    },
+  });

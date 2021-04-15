@@ -1,7 +1,8 @@
-// import useState next to FunctionComponent
 import React, { FunctionComponent, useState } from 'react';
-import { Button, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ButtonPrimary } from '../components/Buttons/ButtonPrimary';
+import { SpendCoreView } from '../components/SpendCore/SpendCore';
+import { InputText } from '../components/TextInputs/InputText';
 
 interface IHomeProps {
     user: null,
@@ -9,11 +10,27 @@ interface IHomeProps {
 
 const HomeContainer: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = null }) => {
     
-  const [clicks, setClicks] = useState(0);
+  const [currentlySpent, setCurrentlySpent] = useState(0);
 
   return <>
-    <ButtonPrimary action={() => setClicks(clicks + 1)} text={`just some text`} />
+    <View style={[styles.container]}>
+
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
+      <SpendCoreView setCurrentlySpent={setCurrentlySpent} />
+      <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
+    </View>
+      
+
+    </View>
+    
   </>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
 
 export default HomeContainer;
