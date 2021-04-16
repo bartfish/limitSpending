@@ -1,7 +1,7 @@
 import { TransactionModel } from '../../interfaces/TransactionModel';
 import TransactionSchema from '../../schemas/transactionSchema';
 
-const validateTransaction = async (transaction: TransactionModel) => {
+const validateTransaction = async (transaction: TransactionModel): Promise<TransactionModel | null> => {
 
     try {
     

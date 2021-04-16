@@ -1,5 +1,8 @@
 import React, { ReactElement } from "react";
 import { AsyncStorage, Button, StyleSheet, Text, View } from "react-native";
+import { TransactionModel } from "../../services/interfaces/TransactionModel";
+import saveTransaction from "../../services/persist/Transactions/saveTransaction";
+import validateTransaction from "../../services/persist/Transactions/validateTransaction";
 import { ButtonPrimary } from "../Buttons/ButtonPrimary";
 import { InputText } from "../TextInputs/InputText";
 
@@ -15,9 +18,27 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
         console.log(value)  
 
         try {
+
+            let transaction: TransactionModel = {
+                name: "initial",
+                amount: value,
+                category: 1,
+                latitude: 1,
+                longtitude: 1,
+                insertTime: new Date().getTime()
+            }
+
+            console.log("validating data")
+
+            const transactionApproved = validateTransaction(transaction);
+
+            if (transactionApproved) {
+                saveTransaction(transaction);
+            }
             
           } catch (error) {
             // Error saving data
+            console.error(error)
           }
     }
 
