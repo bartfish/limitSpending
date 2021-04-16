@@ -4,5 +4,6 @@ export interface TransactionModel {
     amount: number,
     insertTime: number,
     longtitude: number,
-    latitude: number
+    latitude: number,
+    userId: number
 }

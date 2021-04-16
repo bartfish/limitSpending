@@ -1,19 +1,34 @@
+import { SQLError } from 'expo-sqlite';
 import { TransactionModel } from '../../interfaces/TransactionModel';
-import TransactionSchema from '../../schemas/transactionSchema';
-import db from '../../storage/db';
+import { db, initializeTransactionsTable } from '../../storage/db';
 
 const saveTransaction = async (transaction: TransactionModel) => {
 
+    initializeTransactionsTable()
+    
     try {
-        const transactionsContext = await db(TransactionSchema);
-        transactionsContext.write(() => {
-            transactionsContext.create('Transaction', transaction);
-        });
-        console.log("transaction successfully added")
+       
+        db.transaction(tx => {
+              tx.executeSql(`insert into transactions (name, category, amount, insertTime, longtitude, latitude, userId) values (0, ?, ?, ?, ?, ?, ?, ?)`, [
+                transaction.name,
+                transaction.category,
+                transaction.amount,
+                transaction.insertTime,
+                transaction.longtitude,
+                transaction.latitude,
+                transaction.userId
+              ]);
+            },
+            (error: SQLError) => {
+                throw new Error(JSON.stringify(error))
+            }, 
+          );
+
     } catch (e) {
         console.error(e);
     }
 
 }
+
 
 export default saveTransaction;

@@ -7,11 +7,10 @@ export const initializeTransactionsTable = () => {
         tx.executeSql(
             `create table if not exists transactions 
             (id integer, name VARCHAR, category INTEGER, amount DOUBLe,
-             insertTime DATETIME, longtitude DOUBLE, latitude DOUBLE);`)
+             insertTime DATETIME, longtitude DOUBLE, latitude DOUBLE, userId INTEGER);`)
     });
 
 }
-
 
 export const initializeUserTable = () => {
    

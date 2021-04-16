@@ -10,6 +10,8 @@ const validateTransaction = async (transaction: TransactionModel): Promise<Trans
         if (transaction.amount <= 0) throw new Error("Incorrect amount given!")
 
         if (!transaction.category) throw new Error("Category must be set.")
+
+        if (!transaction.userId) throw new Error("User must be assigned")
         
         return transaction;
 
