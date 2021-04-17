@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { AsyncStorage, Button, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { TransactionModel } from "../../services/interfaces/TransactionModel";
@@ -15,7 +15,8 @@ interface SpendCoreViewProps {
 
 export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent }): ReactElement => {
 
-    const transactionList = useSelector(state => state.transactions)
+    const transactionList = useSelector(state => state.transactions.transactions)
+    console.log(transactionList)
 
     const spentAmount = (value: number) => {
         setCurrentlySpent(value)
@@ -46,12 +47,6 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
           }
     }
 
-    const loadTransactions = async () => {
-
-        await loadTransactionList(1)
-
-    }
-
     return (
         <View style={{ flex: 3, backgroundColor: 'skyblue' }}>
 
@@ -70,8 +65,17 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
         
             <ButtonPrimary action={() => console.log("")} text={`I did`} />
             
-            <ButtonPrimary action={() => loadTransactions()} text={`I did`} />
-    
+            <ButtonPrimary action={() => loadTransactionList(1)} text={`I did`} />
+            <div>
+                {transactionList && transactionList.map((index: number, tx: TransactionModel) => (
+                        <>
+                        <li key={index}>{tx.name}</li>
+                        <li key={index}>{tx.amount}</li>
+                        <li key={index}>{tx.userId}</li>
+                        </>
+                    ))
+                }
+            </div>
         </View>
     )
 

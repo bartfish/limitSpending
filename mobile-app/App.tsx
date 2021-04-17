@@ -6,6 +6,7 @@ import HomeContainer from './src/containers/HomeContainer';
 import configureStore from './src/redux/store';
 
 export default function App() {
+  
   return (
     <Provider store={configureStore}>
       <View style={styles.container}>

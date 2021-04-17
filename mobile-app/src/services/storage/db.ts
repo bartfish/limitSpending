@@ -3,8 +3,6 @@ export const db = SQLite.openDatabase("nospender.db");
 
 export const initializeTransactionsTable = () => {
     
-    console.log('initializing db')
-
     db.transaction(tx => {
         tx.executeSql(
             `create table if not exists 'transactions'
