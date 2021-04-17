@@ -2,6 +2,8 @@ import { TransactionModel } from '../../interfaces/TransactionModel';
 import TransactionSchema from '../../schemas/transactionSchema';
 
 const validateTransaction = async (transaction: TransactionModel): Promise<TransactionModel | null> => {
+    
+    console.log("validating transaction")
 
     try {
     

@@ -1,6 +1,8 @@
 import React, { ReactElement } from "react";
 import { AsyncStorage, Button, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 import { TransactionModel } from "../../services/interfaces/TransactionModel";
+import { loadTransactionList } from "../../services/persist/Transactions/loadTransactionList";
 import saveTransaction from "../../services/persist/Transactions/saveTransaction";
 import validateTransaction from "../../services/persist/Transactions/validateTransaction";
 import { ButtonPrimary } from "../Buttons/ButtonPrimary";
@@ -12,6 +14,8 @@ interface SpendCoreViewProps {
 }
 
 export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent }): ReactElement => {
+
+    const transactionList = useSelector(state => state.transactions)
 
     const spentAmount = (value: number) => {
         setCurrentlySpent(value)
@@ -25,10 +29,10 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
                 category: 1,
                 latitude: 1,
                 longtitude: 1,
-                insertTime: new Date().getTime()
+                insertTime: new Date().getTime(),
+                userId: 1
             }
 
-            console.log("validating data")
 
             const transactionApproved = validateTransaction(transaction);
 
@@ -40,6 +44,12 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
             // Error saving data
             console.error(error)
           }
+    }
+
+    const loadTransactions = async () => {
+
+        await loadTransactionList(1)
+
     }
 
     return (
@@ -59,6 +69,8 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
             </View>
         
             <ButtonPrimary action={() => console.log("")} text={`I did`} />
+            
+            <ButtonPrimary action={() => loadTransactions()} text={`I did`} />
     
         </View>
     )

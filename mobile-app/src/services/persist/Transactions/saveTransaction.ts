@@ -7,9 +7,11 @@ const saveTransaction = async (transaction: TransactionModel) => {
     initializeTransactionsTable()
     
     try {
+        console.log("inserting transaction")
+        console.log(transaction)
        
         db.transaction(tx => {
-              tx.executeSql(`insert into transactions (name, category, amount, insertTime, longtitude, latitude, userId) values (0, ?, ?, ?, ?, ?, ?, ?)`, [
+              tx.executeSql(`insert into transactions (name, category, amount, insertTime, longtitude, latitude, userId) values (?, ?, ?, ?, ?, ?, ?)`, [
                 transaction.name,
                 transaction.category,
                 transaction.amount,
@@ -26,6 +28,7 @@ const saveTransaction = async (transaction: TransactionModel) => {
 
     } catch (e) {
         console.error(e);
+        return null;
     }
 
 }
