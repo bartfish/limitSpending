@@ -1,4 +1,5 @@
 export interface TransactionModel {
+    id: number,
     name: string,
     category: number,
     amount: number,

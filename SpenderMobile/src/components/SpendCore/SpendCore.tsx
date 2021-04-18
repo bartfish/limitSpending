@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/core';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
+import { clearLocalDatabase } from '../../redux/actions/utilActions';
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
@@ -36,7 +37,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                 latitude: 1,
                 longtitude: 1,
                 insertTime: new Date().getTime(),
-                userId: 1 };
+                userId: 3 };
 
             const transactionApproved = validateTransaction(transaction);
 
@@ -69,6 +70,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
             </View>
             <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
             <ButtonPrimary action={() => navigation.navigate('TransactionHistory')} text={'Transactions history'} />
+            <ButtonPrimary action={() => clearLocalDatabase()} text={'Clear local database'} />
         </View>
     );
 

@@ -3,26 +3,26 @@ import { db, initializeTransactionsTable } from '../../storage/db';
 
 const saveTransaction = async (transaction: TransactionModel) => {
 
-    initializeTransactionsTable()
-    
+    initializeTransactionsTable();
+
     try {
-        console.log("inserting transaction")
-        console.log(transaction)
-       
+        console.log('inserting transaction');
+        console.log(transaction);
+
         db.transaction(tx => {
-              tx.executeSql(`insert into transactions (name, category, amount, insertTime, longtitude, latitude, userId) values (?, ?, ?, ?, ?, ?, ?)`, [
+              tx.executeSql('insert into transactions (name, category, amount, insertTime, longtitude, latitude, userId) values (?, ?, ?, ?, ?, ?, ?)', [
                 transaction.name,
                 transaction.category,
                 transaction.amount,
                 transaction.insertTime,
                 transaction.longtitude,
                 transaction.latitude,
-                transaction.userId
+                transaction.userId,
               ]);
             },
             (error) => {
-                throw new Error(JSON.stringify(error))
-            }, 
+                throw new Error(JSON.stringify(error));
+            },
           );
 
     } catch (e) {
@@ -30,7 +30,7 @@ const saveTransaction = async (transaction: TransactionModel) => {
         return null;
     }
 
-}
+};
 
 
 export default saveTransaction;
