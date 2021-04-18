@@ -3,12 +3,12 @@ import { TransactionModel } from '../../interfaces/TransactionModel';
 import { db } from '../../storage/db';
 
 export const loadTransactionList = async (userId: number) => {
-   
+
     try {
-               
+
         db.transaction(tx => {
 
-          tx.executeSql(`SELECT json_object(*) FROM transactions WHERE userId = ?`, [userId],
+          tx.executeSql('SELECT json_object(*) FROM transactions WHERE userId = ?', [userId],
             (tx, results) => {
 
               console.log(results.rows);
@@ -22,12 +22,12 @@ export const loadTransactionList = async (userId: number) => {
                   latitude: results.rows.item(i).latitude,
                   longtitude: results.rows.item(i).longtitude,
                   insertTime: results.rows.item(i).insertTime,
-                  userId: 5
-              }
+                  userId: 5,
+              };
                 transactionList.push(transaction);
               }
 
-              fetchTransactionList(transactionList)
+              fetchTransactionList(transactionList);
               // return results.rows;
             });
         },
@@ -41,4 +41,4 @@ export const loadTransactionList = async (userId: number) => {
         console.error(e);
         return null;
     }
-}
+};
