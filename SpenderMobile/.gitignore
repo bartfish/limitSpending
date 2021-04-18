@@ -1,11 +1,3 @@
-*/yarn.lock
-*/package-lock.json
-
-SpenderMobile/_tests_
-SpenderMobile/android
-SpenderMobile/ios
-SpenderMobile/node_modules
-
 # OSX
 #
 .DS_Store
