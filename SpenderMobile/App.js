@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import HomeContainer from './src/containers/HomeContainer';
 import configureStore from './src/redux/store';
@@ -11,7 +10,6 @@ import TransactionHistoryComponent from './src/containers/TransactionHistoryCont
 const Stack = createStackNavigator();
 
 export default function App() {
-  
   return (
     <Provider store={configureStore}>
       <NavigationContainer>
@@ -32,12 +30,3 @@ export default function App() {
 
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-});

@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { TransactionModel } from '../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../services/persist/Transactions/loadTransactionList';
@@ -22,14 +23,14 @@ const TransactionHistoryComponent: FunctionComponent<{ initial?: IHomeProps }> =
 
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
-    <View>
+    <ScrollView>
         {transactionList ? transactionList.map((tx: TransactionModel) => (
                 <>
                     <Text>{tx.name} : {tx.amount} : {tx.userId} : {tx.insertTime}</Text>
                 </>
             )) : null
         }
-        </View>
+        </ScrollView>
       <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
     </View>
 

@@ -12,10 +12,6 @@ export const loadTransactionList = async (userId: number) => {
 
           tx.executeSql('SELECT * FROM transactions WHERE userId = ?', [userId],
             (tx, results) => {
-              console.log("dsfsdfdsafsa");
-
-              console.log(results.rows);
-
               var transactionList = [];
               for (let i = 0; i < results.rows.length; ++i) {
                 let transaction: TransactionModel = {
