@@ -17,14 +17,10 @@ interface SpendCoreViewProps {
 export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent }): ReactElement => {
 
     const transactionList = useSelector(state => state.transactions);
-    console.log(Object.keys(transactionList).length);
-    console.log('transactionList');
-    console.log(transactionList ? transactionList[3] : 0);
 
-    // if (Object.keys(transactionList).length > 0) {
-    //     transactionList.map((item, tx) => console.log(item + ": " + tx));
-    // }
-
+    // transactionList && transactionList.map((tx: TransactionModel) => (
+    //     console.log(tx.amount)
+    // ))
 
     const spentAmount = (value: number) => {
         setCurrentlySpent(value);
@@ -53,12 +49,6 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
           }
     };
 
-    const load = () => {
-        loadTransactionList(1);
-        console.log('transactionList');
-        console.log(transactionList);
-    };
-
     return (
         <View style={{ flex: 3, backgroundColor: 'skyblue' }}>
 
@@ -74,18 +64,16 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
                     keyboardType="numeric"
                     underlineColorAndroid="rgba(0,0,0,0)" />
             </View>
-            <ButtonPrimary action={() => console.log('')} text={'I did'} />
-            <ButtonPrimary action={() => load()} text={'I did'} />
-            {/* <View>
-                {transactionList && transactionList.map((index: number, tx: TransactionModel) => (
+            <ButtonPrimary action={() => console.log('')} text={'Confirm spending'} />
+            <ButtonPrimary action={() => loadTransactionList(1)} text={'Transactions history'} />
+            <View>
+                {transactionList && transactionList.map((tx: TransactionModel) => (
                         <>
-                        <li key={index}>{tx.name}</li>
-                        <li key={index}>{tx.amount}</li>
-                        <li key={index}>{tx.userId}</li>
+                            <Text>{tx.name} : {tx.amount} : {tx.userId} : {tx.insertTime}</Text>
                         </>
                     ))
                 }
-            </View> */}
+            </View>
         </View>
     );
 

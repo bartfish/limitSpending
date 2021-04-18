@@ -8,8 +8,9 @@ export const loadTransactionList = async (userId: number) => {
 
         db.transaction(tx => {
 
-          tx.executeSql('SELECT json_object(*) FROM transactions WHERE userId = ?', [userId],
+          tx.executeSql('SELECT * FROM transactions WHERE userId = ?', [userId],
             (tx, results) => {
+              console.log("dsfsdfdsafsa");
 
               console.log(results.rows);
 
@@ -23,12 +24,10 @@ export const loadTransactionList = async (userId: number) => {
                   longtitude: results.rows.item(i).longtitude,
                   insertTime: results.rows.item(i).insertTime,
                   userId: 5,
-              };
+                };
                 transactionList.push(transaction);
               }
-
-              fetchTransactionList(transactionList);
-              // return results.rows;
+              fetchTransactionList(Object.values(transactionList));
             });
         },
         (error) => {

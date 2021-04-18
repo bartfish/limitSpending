@@ -13,9 +13,7 @@ type TransactionsAction = {
 const transactionsReducer = (state = initialState, action: TransactionsAction) => {
     switch(action.type) {
         case FETCH_TRANSACTIONS_LIST:
-            return {
-                ...action.payload
-            }
+            return action.payload;
         default: 
             return state;
     }
