@@ -5,7 +5,7 @@ import configureStore from "../store"
 
 export const fetchTransactionList = (transactionList: any) => {
     
-    console.log(transactionList)
+    console.log("fetchin transactions")
     
     configureStore.dispatch({
         type: FETCH_TRANSACTIONS_LIST,

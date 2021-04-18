@@ -15,8 +15,15 @@ interface SpendCoreViewProps {
 
 export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent }): ReactElement => {
 
-    const transactionList = useSelector(state => state.transactions.transactions)
-    console.log(transactionList)
+    const transactionList = useSelector(state => state.transactions)
+    console.log(Object.keys(transactionList).length)
+    console.log("transactionList")
+    console.log(transactionList ? transactionList[3] : 0)
+
+    // if (Object.keys(transactionList).length > 0) {
+    //     transactionList.map((item, tx) => console.log(item + ": " + tx));
+    // }
+
 
     const spentAmount = (value: number) => {
         setCurrentlySpent(value)
@@ -34,7 +41,6 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
                 userId: 1
             }
 
-
             const transactionApproved = validateTransaction(transaction);
 
             if (transactionApproved) {
@@ -45,6 +51,12 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
             // Error saving data
             console.error(error)
           }
+    }
+
+    const load = () => {
+        loadTransactionList(1)
+        console.log("transactionList")
+        console.log(transactionList)
     }
 
     return (
@@ -65,8 +77,8 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
         
             <ButtonPrimary action={() => console.log("")} text={`I did`} />
             
-            <ButtonPrimary action={() => loadTransactionList(1)} text={`I did`} />
-            <View>
+            <ButtonPrimary action={() => load()} text={`I did`} />
+            {/* <View>
                 {transactionList && transactionList.map((index: number, tx: TransactionModel) => (
                         <>
                         <li key={index}>{tx.name}</li>
@@ -75,7 +87,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
                         </>
                     ))
                 }
-            </View>
+            </View> */}
         </View>
     )
 
