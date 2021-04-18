@@ -1,10 +1,12 @@
 import { fetchTransactionList } from '../../../redux/actions/transactions';
 import { TransactionModel } from '../../interfaces/TransactionModel';
-import { db } from '../../storage/db';
+import { db, initializeTransactionsTable } from '../../storage/db';
 
 export const loadTransactionList = async (userId: number) => {
 
     try {
+
+        initializeTransactionsTable();
 
         db.transaction(tx => {
 

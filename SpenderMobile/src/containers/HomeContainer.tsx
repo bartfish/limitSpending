@@ -9,15 +9,13 @@ interface IHomeProps {
 }
 
 const HomeContainer: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = null }) => {
-    
-  const [currentlySpent, setCurrentlySpent] = useState(0);
-
+  
   return <>
     <View style={[styles.container]}>
 
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
-      <SpendCoreView setCurrentlySpent={setCurrentlySpent} />
+      <SpendCoreView />
       <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
     </View>
       

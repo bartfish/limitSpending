@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { ReactElement } from 'react';
+import { useNavigation } from '@react-navigation/core';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
@@ -10,27 +11,27 @@ import { ButtonPrimary } from '../Buttons/ButtonPrimary';
 import { InputText } from '../TextInputs/InputText';
 
 interface SpendCoreViewProps {
-    currentlySpent: number,
-    setCurrentlySpent(n: number): number
+    currentlySpent: null,
 }
 
-export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent }): ReactElement => {
+export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
-    const transactionList = useSelector(state => state.transactions);
+    const [currentlySpent, setCurrentlySpent] = useState(0);
 
-    // transactionList && transactionList.map((tx: TransactionModel) => (
-    //     console.log(tx.amount)
-    // ))
+    const navigation = useNavigation();
 
-    const spentAmount = (value: number) => {
-        setCurrentlySpent(value);
-        console.log(value);
+    useEffect(() => {
+        loadTransactionList(1);
+    }, []);
 
+    console.log(currentlySpent);
+
+    const addTransaction = () => {
         try {
 
             let transaction: TransactionModel = {
                 name: 'initial',
-                amount: value,
+                amount: currentlySpent,
                 category: 1,
                 latitude: 1,
                 longtitude: 1,
@@ -41,6 +42,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
 
             if (transactionApproved) {
                 saveTransaction(transaction);
+                setCurrentlySpent(0);
             }
 
           } catch (error) {
@@ -60,20 +62,13 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = ({ setCurrentlySpent 
                 <InputText
                     style={styles.input}
                     placeholder="0.00"
-                    onChangeText={amount => spentAmount(amount)}
+                    value={currentlySpent}
+                    onChangeText={amount =>  setCurrentlySpent(amount) }
                     keyboardType="numeric"
                     underlineColorAndroid="rgba(0,0,0,0)" />
             </View>
-            <ButtonPrimary action={() => console.log('')} text={'Confirm spending'} />
-            <ButtonPrimary action={() => loadTransactionList(1)} text={'Transactions history'} />
-            <View>
-                {transactionList && transactionList.map((tx: TransactionModel) => (
-                        <>
-                            <Text>{tx.name} : {tx.amount} : {tx.userId} : {tx.insertTime}</Text>
-                        </>
-                    ))
-                }
-            </View>
+            <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
+            <ButtonPrimary action={() => navigation.navigate('TransactionHistory')} text={'Transactions history'} />
         </View>
     );
 
