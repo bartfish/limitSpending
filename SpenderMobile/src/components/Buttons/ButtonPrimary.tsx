@@ -21,15 +21,15 @@ export const ButtonPrimary: React.FC<ButtonProps> = ({ action, text }): ReactEle
 
 const styles = StyleSheet.create({
     buttonOverall: {
-      backgroundColor: '#ddd',
       textAlign: 'center',
       textTransform: 'uppercase',
       ...padding(20, 0, 20, 0),
       maxWidth: 200,
     },
     buttonLabel: {
+        color: '#ddd',
         textAlign: 'center',
-        fontSize: 15,
+        fontSize: 20,
         marginTop: 10,
     },
   });

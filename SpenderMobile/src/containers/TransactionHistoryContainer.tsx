@@ -7,11 +7,8 @@ import ListItem from '../components/Lists/ListItem';
 import { TransactionModel } from '../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../services/persist/Transactions/loadTransactionList';
 
-interface IHomeProps {
-    user: null,
-}
 
-const TransactionHistoryComponent: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = null }) => {
+const TransactionHistoryComponent: FunctionComponent<any> = () => {
 
   const transactionList = useSelector(state => state.transactions);
 
