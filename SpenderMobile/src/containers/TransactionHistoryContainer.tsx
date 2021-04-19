@@ -27,8 +27,7 @@ const TransactionHistoryComponent: FunctionComponent<{ initial?: IHomeProps }> =
     <ScrollView>
         {transactionList ? transactionList.map((tx: TransactionModel) => (
                 <>
-                  <ListItem name={tx.name} amount={tx.amount} time={tx.insertTime} />
-                    {/* <Text key={tx.id}>{tx.name} : {tx.amount} : {tx.userId} : {tx.insertTime}</Text> */}
+                  <ListItem name={tx.name} amount={tx.amount} time={tx.insertTime} id={tx.id} />
                 </>
             )) : null
         }

@@ -1,8 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { ButtonPrimary } from '../components/Buttons/ButtonPrimary';
+import React, { FunctionComponent } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';
-import { InputText } from '../components/TextInputs/InputText';
 
 interface IHomeProps {
     user: null,
@@ -13,9 +11,9 @@ const HomeContainer: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = 
     <View style={[styles.container]}>
 
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
+      <View style={{ flex: 1 }} />
       <SpendCoreView />
-      <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
+      <View style={{ flex: 1 }} />
     </View>
     </View>
   </>;};
@@ -23,6 +21,7 @@ const HomeContainer: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#222',
   },
 });
 

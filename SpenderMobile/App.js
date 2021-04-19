@@ -13,17 +13,32 @@ export default function App() {
   return (
     <Provider store={configureStore}>
       <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#222',
+            elevation: 0,
+            shadowOpacity: 0,
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerHideShadow: true,
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={HomeContainer}
-          options={{ title: 'Home screen' }}
+          options={{ title: 'Limit your spendings' }}
         />
-        <Stack.Screen name="TransactionHistory" component={TransactionHistoryComponent} />
+        <Stack.Screen
+          name="TransactionHistory"
+          component={TransactionHistoryComponent}
+          options={{ title: 'Transaction history' }}
+        />
       </Stack.Navigator>
-        {/* <View style={styles.container}>
-          <HomeContainer />
-        </View> */}
 
       </NavigationContainer>
     </Provider>

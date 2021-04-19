@@ -25,8 +25,6 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
         loadTransactionList(1);
     }, []);
 
-    console.log(currentlySpent);
-
     const addTransaction = () => {
         try {
 
@@ -53,7 +51,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
     };
 
     return (
-        <View style={{ flex: 3, backgroundColor: 'skyblue' }}>
+        <View style={{ flex: 3, backgroundColor: '#222' }}>
 
             <View style={styles.textContainer}>
                 <Text style={styles.textTitle}>
@@ -66,11 +64,16 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     value={currentlySpent}
                     onChangeText={amount =>  setCurrentlySpent(amount) }
                     keyboardType="numeric"
-                    underlineColorAndroid="rgba(0,0,0,0)" />
+                    underlineColorAndroid="rgba(0,0,0,0)"
+                    placeholderTextColor={'#ddd'}/>
             </View>
-            <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
-            <ButtonPrimary action={() => navigation.navigate('TransactionHistory')} text={'Transactions history'} />
-            <ButtonPrimary action={() => clearLocalDatabase()} text={'Clear local database'} />
+            
+            <View style={{ alignItems: 'center' }}>
+                <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
+                <ButtonPrimary action={() => navigation.navigate('TransactionHistory')} text={'Transactions history'} />
+                <ButtonPrimary action={() => clearLocalDatabase()} text={'Clear local database'} />
+            </View>
+
         </View>
     );
 
@@ -90,12 +93,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#6E5BAA',
+        backgroundColor: '#222',
     },
     input: {
         minWidth: 250,
         textAlign: 'center',
-        color: '#222',
+        color: '#fff',
         paddingRight: 10,
         paddingLeft: 10,
         paddingTop: 5,
@@ -107,7 +110,12 @@ const styles = StyleSheet.create({
     textTitle: {
         fontSize: 35,
         textAlign: 'center',
-    }});
+        color: '#fff',
+    },
+    placeholder: {
+        color: '#ddd',
+    },
+});
 
 
 

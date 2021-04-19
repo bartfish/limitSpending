@@ -5,13 +5,14 @@ import { milisecToDateTime } from '../../../utils/dateHelper';
 interface ListItemProps {
     name: string,
     amount: number,
-    time: number
+    time: number,
+    id: number,
 }
 
-export const ListItem: React.FC<ListItemProps> = ({ name, amount, time }): ReactElement => {
+export const ListItem: React.FC<ListItemProps> = ({ name, amount, time, id}): ReactElement => {
 
     return (<>
-        <View style={styles.container}>
+        <View style={styles.container} key={id}>
             <View style={styles.container_text}>
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.description}>{milisecToDateTime(time)}</Text>

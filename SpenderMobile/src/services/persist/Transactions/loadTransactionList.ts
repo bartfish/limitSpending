@@ -5,7 +5,7 @@ import { db, initializeTransactionsTable } from '../../storage/db';
 export const loadTransactionList = async (userId: number) => {
 
     try {
-        console.log(userId)
+        console.log(userId);
 
         initializeTransactionsTable();
 
@@ -15,15 +15,25 @@ export const loadTransactionList = async (userId: number) => {
             (tx, results) => {
               var transactionList = [];
               for (let i = 0; i < results.rows.length; ++i) {
+                const {
+                  id,
+                  name,
+                  amount,
+                  category,
+                  latitude,
+                  longtitude,
+                  insertTime,
+                  userId } = results.rows.item(i);
+
                 let transaction: TransactionModel = {
-                  id: results.rows.item(i).id,
-                  name: results.rows.item(i).name,
-                  amount: results.rows.item(i).amount,
-                  category: results.rows.item(i).category,
-                  latitude: results.rows.item(i).latitude,
-                  longtitude: results.rows.item(i).longtitude,
-                  insertTime: results.rows.item(i).insertTime,
-                  userId: results.rows.item(i).userId,
+                  id: id,
+                  name: name,
+                  amount: amount,
+                  category: category,
+                  latitude: latitude,
+                  longtitude: longtitude,
+                  insertTime: insertTime,
+                  userId: userId,
                 };
                 transactionList.push(transaction);
               }
