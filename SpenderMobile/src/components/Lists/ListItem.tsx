@@ -1,23 +1,25 @@
 import React, { ReactElement } from 'react';
-import View from 'react-native-gesture-handler/lib/typescript/GestureHandlerRootView';
+import { View, StyleSheet, Text } from 'react-native';
+import { milisecToDateTime } from '../../../utils/dateHelper';
 
 interface ListItemProps {
-    name: string, 
-    amount: number, 
+    name: string,
+    amount: number,
     time: number
 }
 
 export const ListItem: React.FC<ListItemProps> = ({ name, amount, time }): ReactElement => {
 
     return (<>
-        <View style={{styles.container}}> 
-            <View style={{styles.container_text}}>
-                <Text style={{styles.title}}>{name}</Text>
-                <Text style={{styles.description}}>{amount} {time}</Text>
+        <View style={styles.container}>
+            <View style={styles.container_text}>
+                <Text style={styles.title}>{name}</Text>
+                <Text style={styles.description}>{milisecToDateTime(time)}</Text>
             </View>
+            <Text style={styles.title}>{amount}</Text>
         </View>
-    </>)
-    
+    </>);
+
 
 };
 
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
         fontSize: 11,
         fontStyle: 'italic',
     },
-    photo: {
+    categoryLogo: {
         height: 50,
         width: 50,
     },

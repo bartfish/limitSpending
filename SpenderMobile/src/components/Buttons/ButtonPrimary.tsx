@@ -8,18 +8,17 @@ interface ButtonProps {
 
 export const ButtonPrimary: React.FC<ButtonProps> = ({ action, text }): ReactElement => {
 
-    console.log(text)
+    console.log(text);
 
     return <>
         <Button
             onPress={() => action()}
             title={text}
-            style={styles.container}          
+            style={styles.container}
             accessibilityLabel="Learn" />
-    </>
+    </>;
 
-
-}
+};
 
 const styles = StyleSheet.create({
     container: {
