@@ -18,6 +18,7 @@ const TransactionHistoryComponent: FunctionComponent<any> = () => {
 
   useFocusEffect(
     useCallback(() => {
+      console.log("loading")
       loadTransactionList(3);
     }, [])
   );
@@ -33,7 +34,7 @@ const TransactionHistoryComponent: FunctionComponent<any> = () => {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
     <ScrollView>
-        {transactionList.transactions ? transactionList.map((tx: TransactionModel) => (
+        {transactionList ? transactionList.map((tx: TransactionModel) => (
                 <>
                   <ListItem key={tx.id} name={tx.name} amount={tx.amount} time={tx.insertTime} id={tx.id} />
                 </>
@@ -47,8 +48,6 @@ const TransactionHistoryComponent: FunctionComponent<any> = () => {
         </ScrollView>
       <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
     </View>
-
-
     </View>
 
   </>;

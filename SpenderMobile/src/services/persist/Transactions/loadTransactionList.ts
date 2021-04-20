@@ -5,6 +5,7 @@ import { db, initializeTransactionsTable } from '../../storage/db';
 export const loadTransactionList = async (userId: number) => {
 
     try {
+        console.log('userId');
         console.log(userId);
 
         initializeTransactionsTable();
