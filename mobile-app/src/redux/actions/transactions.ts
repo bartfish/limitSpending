@@ -3,7 +3,7 @@ import { FETCH_TRANSACTIONS_LIST } from "../types/transactions"
 
 import configureStore from "../store"
 
-export const fetchTransactionList = (transactionList: any) => {
+export const setTransactionList = (transactionList: any) => {
     
     console.log(transactionList)
     

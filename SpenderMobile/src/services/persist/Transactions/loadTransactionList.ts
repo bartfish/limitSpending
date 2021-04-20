@@ -1,4 +1,4 @@
-import { fetchTransactionList } from '../../../redux/actions/transactions';
+import { setTransactionsList } from '../../../redux/actions/transactions';
 import { TransactionModel } from '../../interfaces/TransactionModel';
 import { db, initializeTransactionsTable } from '../../storage/db';
 
@@ -37,7 +37,8 @@ export const loadTransactionList = async (userId: number) => {
                 };
                 transactionList.push(transaction);
               }
-              fetchTransactionList(Object.values(transactionList));
+              console.log(transactionList)
+              setTransactionsList(Object.values(transactionList));
             });
         },
         (error) => {

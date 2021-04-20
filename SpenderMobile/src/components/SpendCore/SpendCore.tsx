@@ -26,6 +26,8 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
     }, []);
 
     const addTransaction = () => {
+
+        console.log("creating transaction");
         try {
 
             let transaction: TransactionModel = {
@@ -36,8 +38,12 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                 longtitude: 1,
                 insertTime: new Date().getTime(),
                 userId: 3 };
+            console.log(transaction);
 
             const transactionApproved = validateTransaction(transaction);
+
+            console.log("transactionApproved");
+            console.log(transactionApproved);
 
             if (transactionApproved) {
                 saveTransaction(transaction);

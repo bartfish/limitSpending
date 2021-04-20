@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Button, StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { padding } from '../../styles';
 
 interface ButtonProps {

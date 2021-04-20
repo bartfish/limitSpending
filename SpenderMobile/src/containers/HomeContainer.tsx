@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';

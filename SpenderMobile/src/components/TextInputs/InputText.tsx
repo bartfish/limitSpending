@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Button, StyleSheet, Text, TextInput } from "react-native";
 
 
-export const InputText: React.FC = (props): ReactElement => {
+export const InputText: React.FC<any> = (props): ReactElement => {
 
     return <>
         <TextInput 

@@ -1,5 +1,5 @@
 import { SQLError } from 'expo-sqlite';
-import { fetchTransactionList } from '../../../redux/actions/transactions';
+import { setTransactionList } from '../../../redux/actions/transactions';
 import { db } from '../../storage/db';
 
 export const loadTransactionList = async (userId: number) => {
@@ -11,7 +11,7 @@ export const loadTransactionList = async (userId: number) => {
         tx.executeSql(`SELECT * FROM transactions WHERE userId = ?`, [userId],
           (tx, results) => {
             console.log(results.rows);
-            fetchTransactionList(results.rows)
+            setTransactionList(results.rows)
             // return results.rows;
           });
       },

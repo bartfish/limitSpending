@@ -19,11 +19,18 @@ export const initializeUserTable = () => {
     });
 };
 
+export const clearTransactionsForUser = (userId: number) => {
+    db.transaction(tx => {
+        tx.executeSql('delete * from \'transactions\' where user = ?', [userId]);
+    });
+};
 export const clearDatabase = async () => {
     let [results] = await db.executeSql('SELECT name FROM sqlite_master WHERE type="table" ORDER BY name');
+    console.log(results.rows);
     var len = results.rows.length;
     for (let i = 0; i < len; i++) {
         let tableName = results.rows.item(i).name;
+        console.log(tableName);
         if (tableName !== 'sqlite_sequence' && tableName !== 'android_metadata') {
             await db.executeSql(`DELETE FROM ${results.rows.item(i).name}`);
         }
