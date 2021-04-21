@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       textTransform: 'uppercase',
       ...padding(20, 0, 20, 0),
-      maxWidth: 200,
     },
     buttonLabel: {
-        color: '#ddd',
+        color: '#aaa',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,

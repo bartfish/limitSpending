@@ -21,7 +21,7 @@ export const initializeUserTable = () => {
 
 export const clearTransactionsForUser = (userId: number) => {
     db.transaction(tx => {
-        tx.executeSql('delete * from \'transactions\' where user = ?', [userId]);
+        tx.executeSql('delete from \'transactions\' where userId = ?', [userId]);
     });
 };
 export const clearDatabase = async () => {

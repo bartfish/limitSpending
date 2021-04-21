@@ -1,15 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useNavigation } from '@react-navigation/core';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { clearLocalDatabase } from '../../redux/actions/utilActions';
+import { TextInput } from 'react-native-gesture-handler';
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
 import { ButtonPrimary } from '../Buttons/ButtonPrimary';
-import { InputText } from '../TextInputs/InputText';
 
 interface SpendCoreViewProps {
     currentlySpent: null,
@@ -17,37 +14,44 @@ interface SpendCoreViewProps {
 
 export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
-    const [currentlySpent, setCurrentlySpent] = useState(0);
-
-    const navigation = useNavigation();
+    const [currentlySpent, setCurrentlySpent] = useState('');
 
     useEffect(() => {
         loadTransactionList(1);
     }, []);
 
+    const onChangeTextInput = (text) => {
+        const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
+        if (numericRegex.test(text)) {
+            setCurrentlySpent(text);
+        } else {
+            if (text === '') {
+                setCurrentlySpent('');
+            }
+        }
+    };
+
     const addTransaction = () => {
 
-        console.log("creating transaction");
+        console.log('creating transaction');
         try {
 
             let transaction: TransactionModel = {
+                id: 0,
                 name: 'initial',
-                amount: currentlySpent,
+                // eslint-disable-next-line radix
+                amount: parseFloat(currentlySpent),
                 category: 1,
                 latitude: 1,
                 longtitude: 1,
                 insertTime: new Date().getTime(),
                 userId: 3 };
-            console.log(transaction);
 
             const transactionApproved = validateTransaction(transaction);
 
-            console.log("transactionApproved");
-            console.log(transactionApproved);
-
             if (transactionApproved) {
                 saveTransaction(transaction);
-                setCurrentlySpent(0);
+                setCurrentlySpent('');
             }
 
           } catch (error) {
@@ -64,14 +68,25 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     I spent
                 </Text>
 
-                <InputText
+                <TextInput
+                    underlineColorAndroid='transparent'
                     style={styles.input}
                     placeholder="0.00"
+                    placeholderTextColor={'#ddd'}
+                    keyboardType={'numeric'}
                     value={currentlySpent}
-                    onChangeText={amount =>  setCurrentlySpent(amount) }
+                    onChangeText={(amount) => onChangeTextInput(amount)}
+                />
+
+
+                {/* <InputText
+                    style={styles.input}
+                    placeholder="0.00"
+                    onChangeText={amount => validateAmount(amount) }
                     keyboardType="numeric"
                     underlineColorAndroid="rgba(0,0,0,0)"
-                    placeholderTextColor={'#ddd'}/>
+                    placeholderTextColor={'#ddd'}/> */}
+
             </View>
 
             <View style={{ alignItems: 'center' }}>

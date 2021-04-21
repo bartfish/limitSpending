@@ -1,19 +1,28 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';
 
-interface IHomeProps {
-    user: null,
-}
-
-const HomeContainer: FunctionComponent<{ initial?: IHomeProps }> = ({ initial = null }) => {
+const HomeContainer: FunctionComponent<any> = () => {
   return <>
     <View style={[styles.container]}>
 
+      <TouchableOpacity
+        style={{ alignSelf: 'flex-end', width: 60, height: 60, bacgroundColor: '#ddd' }}
+        >
+          <FontAwesome 
+            style={{ 
+              color: '#fff',
+              width: '100%',
+            }}
+            name={'settings'} 
+            size={15} />
+      </TouchableOpacity>
+
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }} />
-      <SpendCoreView />
+        <SpendCoreView />
       <View style={{ flex: 1 }} />
     </View>
     </View>

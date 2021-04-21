@@ -18,6 +18,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <ToastProvider>
+
         <Provider store={configureStore}>
           <NavigationContainer>
             <TabNavigation />
