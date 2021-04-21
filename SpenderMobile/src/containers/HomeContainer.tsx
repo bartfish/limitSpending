@@ -8,17 +8,32 @@ const HomeContainer: FunctionComponent<any> = () => {
   return <>
     <View style={[styles.container]}>
 
-      <TouchableOpacity
-        style={{ alignSelf: 'flex-end', width: 60, height: 60, bacgroundColor: '#ddd' }}
-        >
-          <FontAwesome 
-            style={{ 
-              color: '#fff',
-              width: '100%',
-            }}
-            name={'settings'} 
-            size={15} />
-      </TouchableOpacity>
+      <View style={{ height: 100, alignItems: 'space-between' }}>
+        <TouchableOpacity
+          style={{ alignSelf: 'flex-end', width: 60, height: 60, bacgroundColor: '#ddd' }}
+          >
+            <FontAwesome 
+              style={{ 
+                color: '#fff',
+                width: '100%',
+              }}
+              name={'bars'} 
+              size={15} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ alignSelf: 'flex-start', width: 60, height: 60, bacgroundColor: '#ddd' }}
+          >
+            <FontAwesome 
+              style={{ 
+                color: '#fff',
+                width: '100%',
+              }}
+              name={'sync-alt'} 
+              size={15} />
+        </TouchableOpacity>
+      </View>
+
 
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }} />
