@@ -3,35 +3,39 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';
+import { padding } from '../styles';
 
 const HomeContainer: FunctionComponent<any> = () => {
   return <>
     <View style={[styles.container]}>
 
-      <View style={{ height: 100, alignItems: 'space-between' }}>
-        <TouchableOpacity
-          style={{ alignSelf: 'flex-end', width: 60, height: 60, bacgroundColor: '#ddd' }}
-          >
-            <FontAwesome 
-              style={{ 
-                color: '#fff',
-                width: '100%',
-              }}
-              name={'bars'} 
-              size={15} />
-        </TouchableOpacity>
+      <View style={{ flexDirection:'row', justifyContent: 'space-between' }}>
 
-        <TouchableOpacity
-          style={{ alignSelf: 'flex-start', width: 60, height: 60, bacgroundColor: '#ddd' }}
-          >
-            <FontAwesome 
-              style={{ 
-                color: '#fff',
-                width: '100%',
-              }}
-              name={'sync-alt'} 
-              size={15} />
-        </TouchableOpacity>
+      <View>
+          <TouchableOpacity
+            style={{ bacgroundColor: '#ddd', ...padding(30, 30, 30, 30) }}
+            >
+              <FontAwesome
+                style={{
+                  color: '#fff',
+                }}
+                name={'sync-alt'}
+                size={15} />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity
+            style={{ bacgroundColor: '#ddd', ...padding(30, 30, 30, 30) }}
+            >
+              <FontAwesome
+                style={{
+                  color: '#fff',
+                }}
+                name={'bars'}
+                size={15} />
+          </TouchableOpacity>
+        </View>
       </View>
 
 
