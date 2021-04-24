@@ -6,7 +6,7 @@ import configureStore from './src/redux/store';
 
 import { NavigationContainer } from '@react-navigation/native';
 import theme from './src/styles/theme';
-import DrawerNavigation from './src/components/DrawerNavigation';
+import DrawerNavigation from './src/components/Navigators/DrawerNavigation';
 
 export default function App() {
   return (

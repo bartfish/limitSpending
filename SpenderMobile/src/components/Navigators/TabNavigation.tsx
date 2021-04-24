@@ -2,23 +2,17 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
-import HomeContainer from '../containers/HomeContainer';
-import TransactionHistoryComponent from '../containers/TransactionHistoryContainer';
+import HomeContainer from '../../containers/HomeContainer';
+import TransactionHistoryContainer from '../../containers/TransactionHistoryContainer';
+import LimitBoxContainer from '../../containers/LimitBoxContainer';
 
 const Tab = createMaterialBottomTabNavigator();
 
-export const TabNavigation = () => {
+const TabNavigation = () => {
 
   const NAVIGATION_ICONS_SIZE = 23;
   return (
-    // <Tab.Navigator
-    //   initialRouteName="HomeContainer"
-    //   activeColor="#fff"
-    //   barStyle={{
-    //       backgroundColor: '#222',
-    // }}
-    // >
-    <Tab.Navigator    
+    <Tab.Navigator
       activeColor="#fff"
       barStyle={{
           backgroundColor: '#222',
@@ -26,7 +20,7 @@ export const TabNavigation = () => {
       >
       <Tab.Screen
         name="Limitations"
-        component={HomeContainer}
+        component={LimitBoxContainer}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome name={'piggy-bank'} color={color} size={NAVIGATION_ICONS_SIZE} />
@@ -46,7 +40,7 @@ export const TabNavigation = () => {
       />
       <Tab.Screen
         name="TransactionHistory"
-        component={TransactionHistoryComponent}
+        component={TransactionHistoryContainer}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome name={'history'} color={color} size={NAVIGATION_ICONS_SIZE} />
@@ -57,3 +51,5 @@ export const TabNavigation = () => {
     </Tab.Navigator>
   );
 };
+
+export default TabNavigation;

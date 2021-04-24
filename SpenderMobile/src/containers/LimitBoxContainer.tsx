@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent, useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -11,7 +10,7 @@ import { clearTransactionsForUser } from '../services/storage/db';
 import { setTransactionsList } from '../redux/actions/transactions';
 import { useFocusEffect } from '@react-navigation/native';
 
-const TransactionHistoryContainer: FunctionComponent<any> = () => {
+const LimitBoxContainer: FunctionComponent<any> = () => {
 
   const transactionList = useSelector(state => state.transactions);
   console.log(transactionList);
@@ -59,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TransactionHistoryContainer;
+export default LimitBoxContainer;
