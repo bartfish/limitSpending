@@ -24,6 +24,7 @@ const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
       initialRouteName="HomeContainer"
+      // drawerPosition="right"
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Stack" component={StackNavigator} />
     </Drawer.Navigator>
