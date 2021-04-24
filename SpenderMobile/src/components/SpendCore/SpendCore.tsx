@@ -78,21 +78,10 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     onChangeText={(amount) => onChangeTextInput(amount)}
                 />
 
-
-                {/* <InputText
-                    style={styles.input}
-                    placeholder="0.00"
-                    onChangeText={amount => validateAmount(amount) }
-                    keyboardType="numeric"
-                    underlineColorAndroid="rgba(0,0,0,0)"
-                    placeholderTextColor={'#ddd'}/> */}
-
             </View>
 
             <View style={{ alignItems: 'center' }}>
                 <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
-                {/* <ButtonPrimary action={() => navigation.navigate('TransactionHistory')} text={'Transactions history'} />
-                <ButtonPrimary action={() => clearLocalDatabase()} text={'Clear local database'} /> */}
             </View>
 
         </View>

@@ -40,9 +40,9 @@ const HomeContainer: FunctionComponent<any> = () => {
 
 
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1 }} />
+      {/* <View style={{ flex: 1 }} /> */}
         <SpendCoreView />
-      <View style={{ flex: 1 }} />
+        <View style={{ flex: 1 }} />
     </View>
     </View>
   </>;};

@@ -9,6 +9,7 @@ import { loadTransactionList } from '../services/persist/Transactions/loadTransa
 import { clearTransactionsForUser } from '../services/storage/db';
 import { setTransactionsList } from '../redux/actions/transactions';
 import { useFocusEffect } from '@react-navigation/native';
+import { SpendLimitView } from '../components/SpendingLimit/SpendLimit';
 
 const LimitBoxContainer: FunctionComponent<any> = () => {
 
@@ -28,12 +29,10 @@ const LimitBoxContainer: FunctionComponent<any> = () => {
 
   return <>
     <View style={[styles.container]}>
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
-
+      <View style={{ flex: 1, backgroundColor: '#222' }}>
         
+        <SpendLimitView />
 
-        <View style={{ flex: 1, backgroundColor: 'setCurrentlySpent' }} />
       </View>
     </View>
 
