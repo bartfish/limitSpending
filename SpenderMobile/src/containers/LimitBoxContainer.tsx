@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent, useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -21,11 +22,6 @@ const LimitBoxContainer: FunctionComponent<any> = () => {
       loadTransactionList(3);
     }, [])
   );
-
-  const deleteAllTransactionsForUser = useCallback((userId: number) => {
-    clearTransactionsForUser(userId);
-    setTransactionsList([]);
-  }, []);
 
   return <>
     <View style={[styles.container]}>

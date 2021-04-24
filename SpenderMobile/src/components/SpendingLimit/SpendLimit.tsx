@@ -1,23 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Picker } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
 export const SpendLimitView: React.FC<any> = (): ReactElement => {
 
-    const [currentlySpent, setCurrentlySpent] = useState('');
+    const [annualLimit, setAnnualLimit] = useState('');
+    const [monthLimit, setMonthLimit] = useState('');
+    const [weekLimit, setWeekLimit] = useState('');
 
     useEffect(() => {
         // loadTransactionList(1);
-    }, []);
 
-    const onChangeTextInput = (text) => {
+    }, [annualLimit, monthLimit, weekLimit]);
+
+    const onChangeTextInput = (text, action) => {
         const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
         if (numericRegex.test(text)) {
-            setCurrentlySpent(text);
+            action(text);
         } else {
             if (text === '') {
-                setCurrentlySpent('');
+                action('');
             }
         }
     };
@@ -45,8 +48,29 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
 
             <View style={styles.formContainer}>
                 <View style={styles.currentContainer}>
+                    <View style={styles.limitTypeContainer}>
+                        <Picker style={{ color: '#fff' }} mode="dropdown">
+                            <Picker.Item label="Annually" value="annually"/>
+                            <Picker.Item label="Monthly" value="monthly"/>
+                            <Picker.Item label="Weekly" value="weekly"/>
+                        </Picker>
+                    </View>
 
+                    <View style={styles.limitInput}>
+                        <Text style={{ color: '#fff' }}>no more than</Text>
+                    </View>
                 </View>
+                <TextInput
+                        underlineColorAndroid="transparent"
+                        style={styles.input}
+                        placeholder="0.00"
+                        placeholderTextColor={'#ddd'}
+                        keyboardType={'numeric'}
+                        value={annualLimit}
+                        onChangeText={(amount) => onChangeTextInput(amount, setAnnualLimit)}
+                    />
+
+                {/* </View> */}
 
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputLabel}>Annually no more than: </Text>
@@ -56,8 +80,9 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={currentlySpent}
-                        onChangeText={(amount) => onChangeTextInput(amount)}
+                        value={annualLimit}
+                        editable={false}
+                        // onChangeText={(amount) => onChangeTextInput(amount, setAnnualLimit)}
                     />
                 </View>
 
@@ -69,8 +94,9 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={currentlySpent}
-                        onChangeText={(amount) => onChangeTextInput(amount)}
+                        value={monthLimit}
+                        editable={false}
+                        // onChangeText={(amount) => onChangeTextInput(amount, setMonthLimit)}
                     />
                 </View>
 
@@ -82,13 +108,12 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={currentlySpent}
-                        onChangeText={(amount) => onChangeTextInput(amount)}
+                        value={weekLimit}
+                        editable={false}
+                        // onChangeText={(amount) => onChangeTextInput(amount, setWeekLimit)}
                     />
                 </View>
-                <View style={styles.futureContainer}>
-
-                </View>
+                <View style={styles.futureContainer} />
             </View>
 
 
@@ -120,13 +145,24 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     currentContainer: {
-        flex: 1,
+        flex: 2,
+        flexDirection: 'row',
+        color: '#fff',
+        fontSize: 16,
     },
     futureContainer: {
-        flex: 2,
+        flex: 1,
+    },
+    limitTypeContainer: {
+        flex: 0.5,
+        alignSelf: 'center',
+
+    },
+    limitInput: {
+        alignSelf: 'center',
+        flex: 0.5,
     },
     inputLabel: {
-        flex: 1,
         color: '#fff',
         fontSize: 16,
     },
