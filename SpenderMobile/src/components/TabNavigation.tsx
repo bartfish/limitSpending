@@ -18,7 +18,12 @@ export const TabNavigation = () => {
     //       backgroundColor: '#222',
     // }}
     // >
-    <Tab.Navigator>
+    <Tab.Navigator    
+      activeColor="#fff"
+      barStyle={{
+          backgroundColor: '#222',
+      }}
+      >
       <Tab.Screen
         name="Limitations"
         component={HomeContainer}

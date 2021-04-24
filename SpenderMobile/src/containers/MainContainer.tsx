@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { TabNavigation } from '../components/TabNavigation';
 
 const MainContainer: FunctionComponent<any> = () => {
-    return <TabNavigation />;
+    // return <TabNavigation />;
+    return null;
 };
 
 export default MainContainer;
