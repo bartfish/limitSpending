@@ -8,12 +8,10 @@ import { padding } from '../styles';
 
 const HomeContainer: FunctionComponent<any> = () => {
 
-  const navigation = useNavigation();
-
   return <>
     <View style={[styles.container]}>
-      <View style={{ flexDirection:'row', justifyContent: 'space-between' }}>
-        <View>
+      {/* <View style={{ flexDirection:'row', justifyContent: 'space-between' }}>
+        {/* <View>
             <TouchableOpacity
               style={{ bacgroundColor: '#ddd', ...padding(30, 30, 30, 30) }}
               >
@@ -24,9 +22,9 @@ const HomeContainer: FunctionComponent<any> = () => {
                   name={'bars'}
                   size={15} />
             </TouchableOpacity>
-        </View>
+        </View> */}
 
-        <View>
+        {/* <View>
             <TouchableOpacity
               style={{ bacgroundColor: '#ddd', ...padding(30, 30, 30, 30) }}
               >
@@ -37,8 +35,8 @@ const HomeContainer: FunctionComponent<any> = () => {
                   name={'sync-alt'}
                   size={15} />
             </TouchableOpacity>
-          </View>
-      </View>
+          </View> */}
+      {/* </View>  */}
 
 
     <View style={{ flex: 1 }}>

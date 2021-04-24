@@ -30,15 +30,13 @@ const TransactionHistoryContainer: FunctionComponent<any> = () => {
   return <>
     <View style={[styles.container]}>
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
-
           <ScrollView>
-              {/* {transactionList ? transactionList.map((tx: TransactionModel) => (
+              {transactionList ? transactionList.map((tx: TransactionModel) => (
                       <>
                         <ListItem key={tx.id} name={tx.name} amount={tx.amount} time={tx.insertTime} id={tx.id} />
                       </>
                   )) : <Text style={{ textAlign: 'center' }}>No spendings found.</Text>
-              } */}
+              }
 
               <ButtonPrimary
                   action={() => deleteAllTransactionsForUser(3)}

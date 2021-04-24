@@ -7,9 +7,9 @@ const CustomNavigationBar = ({ navigation, previous }) => {
     const closeMenu = () => navigation.closeDrawer();
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{ backgroundColor: '#222' }}>
        {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content title="My awesome app" />
+      <Appbar.Content title="" />
       <Appbar.Action icon="menu" color="white" onPress={openMenu} />
     </Appbar.Header>
   );
