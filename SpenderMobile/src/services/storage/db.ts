@@ -1,6 +1,16 @@
 import SQLite from 'react-native-sqlite-storage';
 export const db = SQLite.openDatabase('nospender.db');
 
+export const initializeLimitsTable = () => {
+    db.transaction(tx => {
+        tx.executeSql(
+            `create table if not exists 'limits'
+            (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, amount REAL, type VARCHAR,
+             insertTime DATETIME, userId INTEGER);`);
+    });
+};
+
+
 export const initializeTransactionsTable = () => {
     db.transaction(tx => {
         tx.executeSql(

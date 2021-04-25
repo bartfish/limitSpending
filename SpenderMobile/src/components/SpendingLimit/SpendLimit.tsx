@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Picker } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { TextInput } from 'react-native-gesture-handler';
 
 export const SpendLimitView: React.FC<any> = (): ReactElement => {
@@ -23,18 +24,6 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                 action('');
             }
         }
-    };
-
-    const addTransaction = () => {
-
-        console.log('creating transaction');
-        try {
-
-
-          } catch (error) {
-            // Error saving data
-            console.error(error);
-          }
     };
 
     return (
@@ -73,7 +62,7 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                 {/* </View> */}
 
                 <View style={styles.inputContainer}>
-                    <Text style={styles.inputLabel}>Annually no more than: </Text>
+                    {/* <Text style={styles.inputLabel}>Annually no more than: </Text>
                     <TextInput
                         underlineColorAndroid="transparent"
                         style={styles.input}
@@ -111,7 +100,7 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         value={weekLimit}
                         editable={false}
                         // onChangeText={(amount) => onChangeTextInput(amount, setWeekLimit)}
-                    />
+                    /> */}
                 </View>
                 <View style={styles.futureContainer} />
             </View>
@@ -169,7 +158,7 @@ const styles = StyleSheet.create({
     input: {
         color: '#fff',
         backgroundColor: 'transparent',
-        fontSize: 25,
+        fontSize: 40,
     },
     textTitle: {
         fontSize: 35,
