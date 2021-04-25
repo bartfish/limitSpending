@@ -10,7 +10,7 @@ type TransactionsAction = {
     payload: TransactionModel[] | null
   }
 
-const limitsReducer = (state = initialState, action: TransactionsAction) => {
+const transactionsReducer = (state = initialState, action: TransactionsAction) => {
     switch (action.type) {
         case FETCH_TRANSACTIONS_LIST:
             return action.payload;
@@ -19,4 +19,4 @@ const limitsReducer = (state = initialState, action: TransactionsAction) => {
     }
 };
 
-export default limitsReducer;
+export default transactionsReducer;

@@ -10,13 +10,14 @@ type LimitAction = {
     payload: LimitModel[] | null
   }
 
-const transactionsReducer = (state = initialState, action: LimitAction) => {
+const limitReducer = (state = initialState, action: LimitAction) => {
     switch (action.type) {
         case FETCH_SPENDING_LIMIT:
+            console.log('pppppppppppppppp', action.payload)
             return action.payload;
         default:
             return state;
     }
 };
 
-export default transactionsReducer;
+export default limitReducer;

@@ -3,6 +3,7 @@ import { db } from '../../storage/db';
 
 const saveLimit = async (limit: LimitModel) => {
 
+    console.log('||||||||||||||||||||||||||||', limit)
     try {
         db.transaction((tx: { executeSql: (arg0: string, arg1: (string | number)[]) => void; }) => {
               tx.executeSql('insert into limits (name, type, amount, insertTime, userId) values (?, ?, ?, ?, ?)', [

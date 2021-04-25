@@ -1,14 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent, useCallback } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { ButtonPrimary } from '../components/Buttons/ButtonPrimary';
-import ListItem from '../components/Lists/ListItem';
-import { TransactionModel } from '../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../services/persist/Transactions/loadTransactionList';
-import { clearTransactionsForUser } from '../services/storage/db';
-import { setTransactionsList } from '../redux/actions/limits';
 import { useFocusEffect } from '@react-navigation/native';
 import { SpendLimitView } from '../components/SpendingLimit/SpendLimit';
 
