@@ -1,8 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useReducer, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
+import { loadLimit } from '../../services/persist/Limits/loadLimit';
 import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
@@ -16,8 +18,12 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
     const [currentlySpent, setCurrentlySpent] = useState('');
 
+    const limit = useSelector(state => state);
+    console.log(limit);
+
     useEffect(() => {
-        loadTransactionList(1);
+        // loadTransactionList(1);
+        // loadLimit(3);
     }, []);
 
     const onChangeTextInput = (text) => {
