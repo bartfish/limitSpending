@@ -1,18 +1,14 @@
 import { setTransactionsList } from '../../../redux/actions/transactions';
 import { TransactionModel } from '../../interfaces/TransactionModel';
-import { db, initializeTransactionsTable } from '../../storage/db';
+import { db } from '../../storage/db';
 
-export const loadTransactionList = async (userId: number) => {
+export const loadTransactionList = async (userIdTaken: number) => {
 
     try {
-        console.log('userId');
-        console.log(userId);
-
-        initializeTransactionsTable();
 
         db.transaction(tx => {
 
-          tx.executeSql('SELECT * FROM transactions WHERE userId = ?', [userId],
+          tx.executeSql('SELECT * FROM transactions WHERE userId = ?', [userIdTaken],
             (tx, results) => {
               var transactionList = [];
               for (let i = 0; i < results.rows.length; ++i) {
@@ -38,7 +34,7 @@ export const loadTransactionList = async (userId: number) => {
                 };
                 transactionList.push(transaction);
               }
-              console.log(transactionList)
+              console.log('========================================>', transactionList)
               setTransactionsList(Object.values(transactionList));
             });
         },

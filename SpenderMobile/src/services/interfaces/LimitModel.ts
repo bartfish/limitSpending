@@ -1,8 +1,8 @@
 export interface LimitModel {
-    id: number,
+    id?: number,
     name: string,
     type: string,
     amount: number,
     insertTime: number,
     userId: number
-};
+}

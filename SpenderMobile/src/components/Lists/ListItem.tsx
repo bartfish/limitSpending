@@ -9,7 +9,7 @@ interface ListItemProps {
     id: number,
 }
 
-export const ListItem: React.FC<ListItemProps> = ({ name, amount, time, id}): ReactElement => {
+export const ListItem: React.FC<ListItemProps> = ({ name, amount, time, id }): ReactElement => {
 
     return (<>
         <View style={styles.container} key={id}>

@@ -31,7 +31,7 @@ const TransactionHistoryContainer: FunctionComponent<any> = () => {
     <View style={[styles.container]}>
       <View style={{ flex: 1 }}>
           <ScrollView>
-              {transactionList ? transactionList.map((tx: TransactionModel) => (
+              {(transactionList && transactionList.transactions !== null) ? transactionList.map((tx: TransactionModel) => (
                       <>
                         <ListItem key={tx.id} name={tx.name} amount={tx.amount} time={tx.insertTime} id={tx.id} />
                       </>

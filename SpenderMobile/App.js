@@ -7,8 +7,14 @@ import configureStore from './src/redux/store';
 import { NavigationContainer } from '@react-navigation/native';
 import theme from './src/styles/theme';
 import DrawerNavigation from './src/components/Navigators/DrawerNavigation';
+import { initializeLimitsTable, initializeTransactionsTable, initializeUserTable } from './src/services/storage/db';
 
-export default function App() {
+const App = () => {
+
+  initializeLimitsTable();
+  initializeTransactionsTable();
+  initializeUserTable();
+
   return (
     <ThemeProvider theme={theme}>
       <ToastProvider>
@@ -23,4 +29,6 @@ export default function App() {
   </ThemeProvider>
 
   );
-}
+};
+
+export default App;

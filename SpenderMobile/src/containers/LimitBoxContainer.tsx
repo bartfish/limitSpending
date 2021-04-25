@@ -8,7 +8,7 @@ import ListItem from '../components/Lists/ListItem';
 import { TransactionModel } from '../services/interfaces/TransactionModel';
 import { loadTransactionList } from '../services/persist/Transactions/loadTransactionList';
 import { clearTransactionsForUser } from '../services/storage/db';
-import { setTransactionsList } from '../redux/actions/transactions';
+import { setTransactionsList } from '../redux/actions/limits';
 import { useFocusEffect } from '@react-navigation/native';
 import { SpendLimitView } from '../components/SpendingLimit/SpendLimit';
 

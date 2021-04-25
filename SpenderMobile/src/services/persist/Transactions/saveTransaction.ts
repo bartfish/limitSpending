@@ -1,9 +1,7 @@
 import { TransactionModel } from '../../interfaces/TransactionModel';
-import { db, initializeTransactionsTable } from '../../storage/db';
+import { db } from '../../storage/db';
 
 const saveTransaction = async (transaction: TransactionModel) => {
-
-    initializeTransactionsTable();
 
     try {
         db.transaction((tx: { executeSql: (arg0: string, arg1: (string | number)[]) => void; }) => {

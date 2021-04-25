@@ -1,5 +1,5 @@
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
-import { FETCH_TRANSACTIONS_LIST } from '../types/transactions';
+import { FETCH_TRANSACTIONS_LIST } from '../types/types';
 
 const initialState = {
     transactions: null,
@@ -10,7 +10,7 @@ type TransactionsAction = {
     payload: TransactionModel[] | null
   }
 
-const transactionsReducer = (state = initialState, action: TransactionsAction) => {
+const limitsReducer = (state = initialState, action: TransactionsAction) => {
     switch (action.type) {
         case FETCH_TRANSACTIONS_LIST:
             return action.payload;
@@ -19,4 +19,4 @@ const transactionsReducer = (state = initialState, action: TransactionsAction) =
     }
 };
 
-export default transactionsReducer;
+export default limitsReducer;

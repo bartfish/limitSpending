@@ -32,14 +32,11 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
     };
 
     const addTransaction = () => {
-
-        console.log('creating transaction');
         try {
 
             let transaction: TransactionModel = {
                 id: 0,
                 name: 'initial',
-                // eslint-disable-next-line radix
                 amount: parseFloat(currentlySpent),
                 category: 1,
                 latitude: 1,

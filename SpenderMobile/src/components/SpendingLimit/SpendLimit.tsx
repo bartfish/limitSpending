@@ -3,17 +3,20 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { TextInput } from 'react-native-gesture-handler';
+import { LimitModel } from '../../services/interfaces/LimitModel';
+import validateLimit from '../../services/persist/Limits/validateLimit';
+import saveLimit from '../../services/persist/Limits/saveLimit';
+import { ANNUAL_LIMIT_NAME, DAILY_LIMIT_NAME, MONTHLY_LIMIT_NAME, WEEKLY_LIMIT_NAME } from '../../../utils/constants';
 
 export const SpendLimitView: React.FC<any> = (): ReactElement => {
 
-    const [annualLimit, setAnnualLimit] = useState('');
-    const [monthLimit, setMonthLimit] = useState('');
-    const [weekLimit, setWeekLimit] = useState('');
+    const [limit, setLimit] = useState('');
+    const [limitType, setLimitType] = useState(ANNUAL_LIMIT_NAME);
 
     useEffect(() => {
         // loadTransactionList(1);
 
-    }, [annualLimit, monthLimit, weekLimit]);
+    }, []);
 
     const onChangeTextInput = (text, action) => {
         const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
@@ -24,6 +27,29 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                 action('');
             }
         }
+    };
+
+    const saveTheLimit = () => {
+        try {
+
+            let newLimit: LimitModel = {
+                name: 'initial',
+                type: limitType,
+                amount: parseFloat(limit),
+                insertTime: new Date().getTime(),
+                userId: 3 };
+
+            const limitApproved = validateLimit(newLimit);
+
+            if (limitApproved) {
+                saveLimit(newLimit);
+                setLimit('');
+            }
+
+          } catch (error) {
+            // Error saving data
+            console.error(error);
+          }
     };
 
     return (
@@ -38,10 +64,11 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
             <View style={styles.formContainer}>
                 <View style={styles.currentContainer}>
                     <View style={styles.limitTypeContainer}>
-                        <Picker style={{ color: '#fff' }} mode="dropdown">
-                            <Picker.Item label="Annually" value="annually"/>
-                            <Picker.Item label="Monthly" value="monthly"/>
-                            <Picker.Item label="Weekly" value="weekly"/>
+                        <Picker style={{ color: '#fff' }} mode="dropdown" onValueChange={(e: string) => setLimitType(e)}>
+                            <Picker.Item label="Annually" value={ANNUAL_LIMIT_NAME}/>
+                            <Picker.Item label="Monthly" value={MONTHLY_LIMIT_NAME} />
+                            <Picker.Item label="Weekly" value={WEEKLY_LIMIT_NAME} />
+                            <Picker.Item label="Daily" value={DAILY_LIMIT_NAME} />
                         </Picker>
                     </View>
 
@@ -55,21 +82,24 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={annualLimit}
-                        onChangeText={(amount) => onChangeTextInput(amount, setAnnualLimit)}
+                        value={limit}
+                        onChangeText={(amount) => onChangeTextInput(amount, setLimit)}
+                        onSubmitEditing = {() => saveTheLimit()}
+                        returnKeyLabel="Done"
+                        returnKeyType="done"
                     />
 
                 {/* </View> */}
 
-                <View style={styles.inputContainer}>
-                    {/* <Text style={styles.inputLabel}>Annually no more than: </Text>
+                {/* <View style={styles.inputContainer}>
+                    <Text style={styles.inputLabel}>Annually no more than: </Text>
                     <TextInput
                         underlineColorAndroid="transparent"
                         style={styles.input}
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={annualLimit}
+                        value={''}
                         editable={false}
                         // onChangeText={(amount) => onChangeTextInput(amount, setAnnualLimit)}
                     />
@@ -83,7 +113,7 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={monthLimit}
+                        value={''}
                         editable={false}
                         // onChangeText={(amount) => onChangeTextInput(amount, setMonthLimit)}
                     />
@@ -97,11 +127,11 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={weekLimit}
+                        value={''}
                         editable={false}
                         // onChangeText={(amount) => onChangeTextInput(amount, setWeekLimit)}
-                    /> */}
-                </View>
+                    />
+                </View> */}
                 <View style={styles.futureContainer} />
             </View>
 
