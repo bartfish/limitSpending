@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { ReactElement, useEffect, useReducer, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/core';
+import React, { ReactElement, useCallback, useEffect, useReducer, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
@@ -17,13 +18,15 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
     const [currentlySpent, setCurrentlySpent] = useState('');
 
-    const currentLimit = useSelector(state => state.limits);
-    console.log('oooooooooooooooooo', currentLimit)
+    const currentLimit = useSelector(state => state);
+    console.log('current', currentLimit);
 
-    useEffect(() => {
-        loadTransactionList(1);
-        loadLimit(3);
-    }, []);
+    useFocusEffect(
+        useCallback(() => {
+            loadTransactionList(3);
+            loadLimit(3);
+        }, [])
+    );
 
     const onChangeTextInput = (text) => {
         const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
@@ -87,7 +90,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
             <View style={{ alignItems: 'center' }}>
                 {/* <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} /> */}
-                <Text>Your </Text>
+                <Text style={{ color: '#fff' }}>Your current limit is </Text>
             </View>
 
         </View>

@@ -9,7 +9,6 @@ type LimitAction = {
 const limitReducer = (state: LimitModel | null = null, action: LimitAction) => {
     switch (action.type) {
         case FETCH_SPENDING_LIMIT:
-            console.log('pppppppppppppppp', action.payload);
             return action.payload;
         default:
             return state;

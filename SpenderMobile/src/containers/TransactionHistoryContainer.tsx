@@ -14,7 +14,6 @@ import { useFocusEffect } from '@react-navigation/native';
 const TransactionHistoryContainer: FunctionComponent<any> = () => {
 
   const transactionList = useSelector(state => state.transactions);
-  console.log('=======>', transactionList);
 
   useFocusEffect(
     useCallback(() => {
