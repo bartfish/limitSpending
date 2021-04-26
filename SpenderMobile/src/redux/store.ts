@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import limitsReducer from './reducers/transactionsReducer';
+import limitsReducer from './reducers/limitsReducer';
 import transactionsReducer from './reducers/transactionsReducer';
 
 const rootReducer = combineReducers({

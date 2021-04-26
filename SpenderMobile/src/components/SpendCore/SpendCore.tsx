@@ -8,7 +8,6 @@ import { loadLimit } from '../../services/persist/Limits/loadLimit';
 import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
-import { ButtonPrimary } from '../Buttons/ButtonPrimary';
 
 interface SpendCoreViewProps {
     currentlySpent: null,
@@ -18,12 +17,12 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
     const [currentlySpent, setCurrentlySpent] = useState('');
 
-    const limit = useSelector(state => state);
-    console.log(limit);
+    const currentLimit = useSelector(state => state.limits);
+    console.log('oooooooooooooooooo', currentLimit)
 
     useEffect(() => {
-        // loadTransactionList(1);
-        // loadLimit(3);
+        loadTransactionList(1);
+        loadLimit(3);
     }, []);
 
     const onChangeTextInput = (text) => {
@@ -79,12 +78,16 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     keyboardType={'numeric'}
                     value={currentlySpent}
                     onChangeText={(amount) => onChangeTextInput(amount)}
+                    onSubmitEditing = {() => addTransaction()}
+                    returnKeyLabel="Done"
+                    returnKeyType="done"
                 />
 
             </View>
 
             <View style={{ alignItems: 'center' }}>
-                <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} />
+                {/* <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} /> */}
+                <Text>Your </Text>
             </View>
 
         </View>

@@ -9,7 +9,7 @@ export const loadTransactionList = async (userIdTaken: number) => {
         db.transaction(tx => {
 
           tx.executeSql('SELECT * FROM transactions WHERE userId = ?', [userIdTaken],
-            (tx, results) => {
+            (_tx, results) => {
               var transactionList = [];
               for (let i = 0; i < results.rows.length; ++i) {
                 const {

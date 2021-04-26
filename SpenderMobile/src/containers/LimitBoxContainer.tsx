@@ -5,15 +5,14 @@ import { useSelector } from 'react-redux';
 import { loadTransactionList } from '../services/persist/Transactions/loadTransactionList';
 import { useFocusEffect } from '@react-navigation/native';
 import { SpendLimitView } from '../components/SpendingLimit/SpendLimit';
+import { loadLimit } from '../services/persist/Limits/loadLimit';
 
 const LimitBoxContainer: FunctionComponent<any> = () => {
-
-  const transactionList = useSelector(state => state.transactions);
-  console.log(transactionList);
 
   useFocusEffect(
     useCallback(() => {
       loadTransactionList(3);
+      loadLimit(3);
     }, [])
   );
 

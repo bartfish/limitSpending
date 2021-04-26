@@ -7,16 +7,14 @@ import { LimitModel } from '../../services/interfaces/LimitModel';
 import validateLimit from '../../services/persist/Limits/validateLimit';
 import saveLimit from '../../services/persist/Limits/saveLimit';
 import { ANNUAL_LIMIT_NAME, DAILY_LIMIT_NAME, MONTHLY_LIMIT_NAME, WEEKLY_LIMIT_NAME } from '../../../utils/constants';
+import { useSelector } from 'react-redux';
 
 export const SpendLimitView: React.FC<any> = (): ReactElement => {
 
+    const currentLimit = useSelector(state => state.limits);
+
     const [limit, setLimit] = useState('');
     const [limitType, setLimitType] = useState(ANNUAL_LIMIT_NAME);
-
-    useEffect(() => {
-        // loadTransactionList(1);
-
-    }, []);
 
     const onChangeTextInput = (text, action) => {
         const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
@@ -57,7 +55,7 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
 
             <View>
                 <Text style={styles.textTitle}>
-                    Set your limitations
+                    Set your limit
                 </Text>
             </View>
 
@@ -82,7 +80,7 @@ export const SpendLimitView: React.FC<any> = (): ReactElement => {
                         placeholder="0.00"
                         placeholderTextColor={'#ddd'}
                         keyboardType={'numeric'}
-                        value={limit}
+                        defaultValue={currentLimit ? currentLimit.amount + '' : ''}
                         onChangeText={(amount) => onChangeTextInput(amount, setLimit)}
                         onSubmitEditing = {() => saveTheLimit()}
                         returnKeyLabel="Done"
@@ -202,4 +200,8 @@ const styles = StyleSheet.create({
 
 
 
+
+function state(state: any) {
+    throw new Error('Function not implemented.');
+}
 

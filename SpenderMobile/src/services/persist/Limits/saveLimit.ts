@@ -3,9 +3,17 @@ import { db } from '../../storage/db';
 
 const saveLimit = async (limit: LimitModel) => {
 
-    console.log('||||||||||||||||||||||||||||', limit)
+    console.log('||||||||||||||||||||||||||||', limit);
+    console.log({
+         a:  limit.name,
+         b: limit.type,
+         c: limit.amount,
+         d: limit.insertTime,
+         e: limit.userId,
+    });
+    
     try {
-        db.transaction((tx: { executeSql: (arg0: string, arg1: (string | number)[]) => void; }) => {
+      db.transaction((tx: { executeSql: (arg0: string, arg1: (string | number)[]) => void; }) => {
               tx.executeSql('insert into limits (name, type, amount, insertTime, userId) values (?, ?, ?, ?, ?)', [
                 limit.name,
                 limit.type,
