@@ -5,8 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
-import { loadLimit } from '../../services/persist/Limits/loadLimit';
-import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
+// import { loadLimit } from '../../services/persist/Limits/loadLimit';
+// import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
 
@@ -18,15 +18,7 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
     const [currentlySpent, setCurrentlySpent] = useState('');
 
-    const currentLimit = useSelector(state => state);
-    console.log('current', currentLimit);
-
-    useFocusEffect(
-        useCallback(() => {
-            loadTransactionList(3);
-            loadLimit(3);
-        }, [])
-    );
+    const { amount, type } = useSelector(state => state.limits);
 
     const onChangeTextInput = (text) => {
         const numericRegex = /^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)/;
@@ -68,13 +60,17 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
     return (
         <View style={{ flex: 3, backgroundColor: '#222' }}>
 
+            <View style={{ alignItems: 'center' }}>
+                <Text style={{ color: '#fff' }}>Your current limit is {amount} { type }</Text>
+            </View>
+
             <View style={styles.textContainer}>
                 <Text style={styles.textTitle}>
                     I spent
                 </Text>
 
                 <TextInput
-                    underlineColorAndroid='transparent'
+                    underlineColorAndroid="transparent"
                     style={styles.input}
                     placeholder="0.00"
                     placeholderTextColor={'#ddd'}
@@ -86,11 +82,6 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     returnKeyType="done"
                 />
 
-            </View>
-
-            <View style={{ alignItems: 'center' }}>
-                {/* <ButtonPrimary action={() => addTransaction()} text={'Confirm spending'} /> */}
-                <Text style={{ color: '#fff' }}>Your current limit is </Text>
             </View>
 
         </View>
