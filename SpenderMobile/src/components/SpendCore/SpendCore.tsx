@@ -1,12 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useFocusEffect } from '@react-navigation/core';
-import React, { ReactElement, useCallback, useEffect, useReducer, useState } from 'react';
+import React, { ReactElement, useContext, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { Button } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+
+import ThemeContext from '../../contexts/ThemeContext';
+
 import { TransactionModel } from '../../services/interfaces/TransactionModel';
-// import { loadLimit } from '../../services/persist/Limits/loadLimit';
-// import { loadTransactionList } from '../../services/persist/Transactions/loadTransactionList';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
 
@@ -16,8 +17,11 @@ interface SpendCoreViewProps {
 
 export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
 
-    const [currentlySpent, setCurrentlySpent] = useState('');
+    const { theme, setTheme } = useContext(ThemeContext);
+    console.log(theme);
+    console.log(setTheme);
 
+    const [currentlySpent, setCurrentlySpent] = useState('');
     const { amount, type } = useSelector(state => state.limits);
 
     const onChangeTextInput = (text) => {
@@ -82,6 +86,16 @@ export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
                     returnKeyType="done"
                 />
 
+
+                <Button
+                    onPress={() => {
+                        console.log('clicked');
+                        setTheme('light');
+                    }}
+                    className="button-theme"
+                >
+                Toggle Theme
+                </Button>
             </View>
 
         </View>

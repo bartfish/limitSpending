@@ -1,15 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useNavigation } from '@react-navigation/core';
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';
+import ThemeContext from '../contexts/ThemeContext';
 import { padding } from '../styles';
 
 const HomeContainer: FunctionComponent<any> = () => {
 
+  const { theme } = useContext(ThemeContext);
+
   return <>
-    <View style={[styles.container]}>
+    <View style={[styles.container, theme]}>
       {/* <View style={{ flexDirection:'row', justifyContent: 'space-between' }}>
         {/* <View>
             <TouchableOpacity

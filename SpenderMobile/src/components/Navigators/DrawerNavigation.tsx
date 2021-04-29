@@ -33,6 +33,8 @@ const DrawerNavigation = () => {
       drawerPosition="right"
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Stack" component={StackNavigator} />
+
+    
     </Drawer.Navigator>
   );
 };
