@@ -8,9 +8,7 @@ import { HOSTNAME, PORT } from './utils/constants';
 // const app = express();
 // const port = 8989;
 
-// app.get("/", (req, res) => {
-//     res.send("Hello World");
-// }) 
+
 
 // app.listen(port, () => {
 //     console.log(`server started at http://localhost:${port}`);
@@ -27,6 +25,7 @@ export class ServerSetup {
         this.application.use(this.supportCors);
         this.application.use(bodyParser.json());
         this.application.use(cookieParser());
+        this.registerRoutes();
 
     }
 
@@ -45,6 +44,9 @@ export class ServerSetup {
 
     private registerRoutes() {
         // this.application.use(authorizeSessionRoute)
+        this.application.get("/", (req, res) => {
+            res.send("Hello World");
+        }) 
     }
 
     public start() {
