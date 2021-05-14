@@ -34,7 +34,6 @@ export const loadTransactionList = async (userIdTaken: number) => {
                 };
                 transactionList.push(transaction);
               }
-              console.log('========================================>', transactionList)
               setTransactionsList(Object.values(transactionList));
             });
         },

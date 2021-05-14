@@ -11,11 +11,7 @@ import { TransactionModel } from '../../services/interfaces/TransactionModel';
 import saveTransaction from '../../services/persist/Transactions/saveTransaction';
 import validateTransaction from '../../services/persist/Transactions/validateTransaction';
 
-interface SpendCoreViewProps {
-    currentlySpent: null,
-}
-
-export const SpendCoreView: React.FC<SpendCoreViewProps> = (): ReactElement => {
+export const SpendCoreView: React.FC<any> = (): ReactElement => {
 
     const { theme, setTheme } = useContext(ThemeContext);
     console.log(theme);

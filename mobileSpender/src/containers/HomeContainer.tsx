@@ -1,11 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useNavigation } from '@react-navigation/core';
 import React, { FunctionComponent, useContext } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View } from 'react-native';
 import { SpendCoreView } from '../components/SpendCore/SpendCore';
 import ThemeContext from '../contexts/ThemeContext';
-import { padding } from '../styles';
 
 const HomeContainer: FunctionComponent<any> = () => {
 

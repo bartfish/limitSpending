@@ -19,7 +19,7 @@ const LimitBoxContainer: FunctionComponent<any> = () => {
   return <>
     <View style={[styles.container]}>
       <View style={{ flex: 1, backgroundColor: '#222' }}>
-        
+
         <SpendLimitView />
 
       </View>

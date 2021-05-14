@@ -2,17 +2,16 @@ import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
 import debug from 'debug'
 import * as express from 'express'
+import { saveTransactionRoute } from './routes/saveTransaction';
 
 import { HOSTNAME, PORT } from './utils/constants';
 
-// const app = express();
-// const port = 8989;
+const app = express();
+const port = 8989;
 
-
-
-// app.listen(port, () => {
-//     console.log(`server started at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+    console.log(`server started at http://localhost:${port}`);
+});
 const log = debug('Server')
 
 export class ServerSetup {
@@ -43,10 +42,20 @@ export class ServerSetup {
     }
 
     private registerRoutes() {
-        // this.application.use(authorizeSessionRoute)
-        this.application.get("/", (req, res) => {
+
+
+
+        app.get("/", (req, res) => {
             res.send("Hello World");
         }) 
+
+        app.use(saveTransactionRoute);
+
+        app.get('/routes', (req, res) => {
+            res.send(app._router.stack
+                .filter(r => r.route) 
+                .map(r => r.route.path))
+        })
     }
 
     public start() {
