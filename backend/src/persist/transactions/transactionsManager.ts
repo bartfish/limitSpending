@@ -20,7 +20,7 @@ export const persistTransaction = async (transaction: TransactionModel) => {
     }
 }
 
-export const modifyTransaction = async (txId: string, transaction: TransactionModel) => {
+export const modifyTransaction = async (txId: string, transaction: TransactionModel): Promise<unknown | never> => {
 
     console.log(txId);
     // const t = new Transaction.default({

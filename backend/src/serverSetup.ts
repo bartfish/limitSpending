@@ -8,15 +8,12 @@ import { updateTransactionRoute } from './routes/updateTransaction';
 
 import { HOSTNAME, PORT } from './utils/constants';
 
-
 const app = express();
 const port = 8989;
 
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
-const log = debug('Server')
-
 class ServerSetup {
 
     private application: express.Application;
@@ -30,9 +27,6 @@ class ServerSetup {
         this.application.use(bodyParser.json());
         this.application.use(cookieParser());
         this.registerRoutes();
-
-
-
     }
 
     private supportCors(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -61,9 +55,9 @@ class ServerSetup {
         app.use(updateTransactionRoute);
     }
 
-    public start() {
+    public start(): void {
         this.application.listen(PORT, HOSTNAME, () => {
-            log(`Listening on port ${PORT}`)
+            console.log(`Listening on port ${PORT}`)
         })
     }
 }

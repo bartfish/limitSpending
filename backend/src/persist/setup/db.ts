@@ -1,8 +1,7 @@
 import mongoose = require("mongoose");
 import { MONGO_DB } from '../../utils/constants';
 
-
-export const initializeMongoConnection = () => {
+export const initializeMongoConnection = (): void => {
 
     mongoose.connect(MONGO_DB, {
         useNewUrlParser: true,
