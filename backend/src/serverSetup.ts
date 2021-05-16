@@ -1,7 +1,7 @@
 import * as bodyParser from 'body-parser'
-import * as cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
 import debug from 'debug'
-import * as express from 'express'
+import express from 'express';
 import { initializeMongoConnection } from './persist/setup/db';
 import { saveTransactionRoute } from './routes/saveTransaction';
 import { updateTransactionRoute } from './routes/updateTransaction';
@@ -35,7 +35,7 @@ class ServerSetup {
 
     }
 
-    private supportCors(req: express.Requst,res: express.Response, next: express.NextFunction) {
+    private supportCors(req: express.Request, res: express.Response, next: express.NextFunction) {
         res.setHeader('Access-Control-Allow-Origin', '*')
 
         if (req.method === 'OPTIONS') {
@@ -53,18 +53,12 @@ class ServerSetup {
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
 
-        app.get("/", (req, res) => {
+        app.get("/", (req: express.Request, res: express.Response) => {
             res.send("Hello World");
         }) 
 
         app.use(saveTransactionRoute);
         app.use(updateTransactionRoute);
-
-        app.get('/routes', (req, res) => {
-            res.send(app._router.stack
-                .filter(r => r.route) 
-                .map(r => r.route.path))
-        })
     }
 
     public start() {

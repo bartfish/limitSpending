@@ -25,6 +25,6 @@ const updateTransaction = async (req: express.Request, res: express.Response): P
     }
 }
 
-const updateTransactionRoute: express.Route = express.Router();
+const updateTransactionRoute: express.Router = express.Router();
 updateTransactionRoute.patch('/updateTransaction', updateTransaction);
 export { updateTransactionRoute };

@@ -1,11 +1,10 @@
-import * as mongoose from 'mongoose';
+import mongoose = require("mongoose");
 import { MONGO_DB } from '../../utils/constants';
 
 
 export const initializeMongoConnection = () => {
 
-    mongoose.connect(MONGO_DB, 
-    {
+    mongoose.connect(MONGO_DB, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,

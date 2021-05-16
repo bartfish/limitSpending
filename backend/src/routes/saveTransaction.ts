@@ -16,7 +16,7 @@ const saveTransaction = async (req: express.Request, res: express.Response): Pro
         userId } = req.body as TransactionModel;
     
     try {
-        let response = await persistTransaction({ name, category, amount, insertTime, longtitude, latitude, userId })
+        const response = await persistTransaction({ name, category, amount, insertTime, longtitude, latitude, userId })
         console.log(response)
         if (response) {
             return res.status(200).send();
@@ -27,6 +27,6 @@ const saveTransaction = async (req: express.Request, res: express.Response): Pro
     }
 }
 
-const saveTransactionRoute: express.Route = express.Router();
+const saveTransactionRoute: express.Router = express.Router();
 saveTransactionRoute.post('/saveTransaction', saveTransaction);
 export { saveTransactionRoute };

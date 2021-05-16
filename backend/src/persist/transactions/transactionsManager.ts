@@ -13,12 +13,11 @@ export const persistTransaction = async (transaction: TransactionModel) => {
         userId: transaction.userId
     });
 
-    return await t.save()
-        .then(res => res)
-        .catch((error: string) => 
-        { 
-            throw new Error(error) 
-        });
+    try {
+        return await t.save();
+    } catch (error) {
+        throw new Error(error)
+    }
 }
 
 export const modifyTransaction = async (txId: string, transaction: TransactionModel) => {
@@ -33,12 +32,18 @@ export const modifyTransaction = async (txId: string, transaction: TransactionMo
     //     latitude: transaction.latitude,
     //     userId: transaction.userId
     // }) 
-    return await TransactionSchema
+    try {
+        return await TransactionSchema
         .findOneOrUpdate({ _id: txId }, {  name: transaction.name }, { upsert: true })
-        .then(res => res)
-        .catch((error: string) => 
-        { 
-            console.error(error)
-            throw new Error(error) 
-        });
+    } catch (error) {
+        throw new Error(error)
+    }
+    // return await TransactionSchema
+    //     .findOneOrUpdate({ _id: txId }, {  name: transaction.name }, { upsert: true })
+    //     .then(res => res)
+    //     .catch((error: string) => 
+    //     { 
+    //         console.error(error)
+    //         throw new Error(error) 
+    //     });
 }
