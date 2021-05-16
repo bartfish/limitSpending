@@ -1,21 +1,10 @@
 import * as express from 'express';
+import { TransactionModel } from '../persist/models/TransactionModel';
 import { persistTransaction } from '../persist/transactions/transactionsManager';
-import debug from 'debug'
-
-type TransactionPayload = {
-    name: string,
-    category: number,
-    amount: number,
-    insertTime: number,
-    longtitude: number,
-    latitude: number,
-    userId: number
-}
-const log = debug('Server')
 
 const saveTransaction = async (req: express.Request, res: express.Response): Promise<any | never> => {
 
-    log(req);
+    console.log(req.body);
 
     const { 
         name,
@@ -24,10 +13,18 @@ const saveTransaction = async (req: express.Request, res: express.Response): Pro
         insertTime,
         longtitude,
         latitude,
-        userId } = req.body as TransactionPayload;
+        userId } = req.body as TransactionModel;
+    
+    try {
+        let response = await persistTransaction({ name, category, amount, insertTime, longtitude, latitude, userId })
+        console.log(response)
+        if (response) {
+            return res.status(200).send();
+        }
 
-    persistTransaction({ name, category, amount, insertTime, longtitude, latitude, userId })
-
+    } catch (exception) {
+        return res.status(500).send({ errorMessage: exception });
+    }
 }
 
 const saveTransactionRoute: express.Route = express.Router();

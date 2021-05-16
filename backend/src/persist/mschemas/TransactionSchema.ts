@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-let TransactionSchema = new Schema({
+const transactionSchema = new Schema({
   id: ObjectId,
   name: String,
   category: Number,
@@ -13,5 +13,5 @@ let TransactionSchema = new Schema({
   userId: Number
 });
 
-TransactionSchema = mongoose.model('TransactionSchema', TransactionSchema);
+const TransactionSchema = mongoose.model('TransactionSchema', transactionSchema);
 export default TransactionSchema;

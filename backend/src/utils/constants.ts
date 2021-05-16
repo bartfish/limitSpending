@@ -7,5 +7,5 @@ export const HOSTNAME = (() => {
 })();
 
 export const MONGO_DB = (() => {
-    return 'mongodb://192.168.56.101:27017/spending';
+    return 'mongodb://192.168.56.101:27017/spender_db';
 })();
